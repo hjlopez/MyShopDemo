@@ -9,7 +9,7 @@ using System.Security.AccessControl;
 
 namespace MyShopDemo.DataAccess.InMemory
 {
-    class ProductRepository
+    public class ProductRepository
     {
         ObjectCache cache = MemoryCache.Default;
         List<Product> products = new List<Product>();
@@ -17,6 +17,10 @@ namespace MyShopDemo.DataAccess.InMemory
         public ProductRepository()
         {
             products = cache["products"] as List<Product>;
+            if (products == null)
+            {
+                products = new List<Product>();
+            }
         }
 
         public void Commit()
