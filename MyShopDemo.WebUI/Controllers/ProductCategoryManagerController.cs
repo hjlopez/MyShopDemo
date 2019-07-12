@@ -1,42 +1,36 @@
-﻿using System;
+﻿using MyShopDemo.Core.Models;
+using MyShopDemo.DataAccess.InMemory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MyShopDemo.Core.Models;
-using MyShopDemo.Core.ViewModels;
-using MyShopDemo.DataAccess.InMemory;
 
 namespace MyShopDemo.WebUI.Controllers
 {
-    public class ProductManagerController : Controller
+    public class ProductCategoryManagerController : Controller
     {
-        ProductRepository context;
-        ProductCategoryRepository productCategories;
+        ProductCategoryRepository context;
 
-        public ProductManagerController()
+        public ProductCategoryManagerController()
         {
-            context = new ProductRepository();
-            productCategories = new ProductCategoryRepository();
+            context = new ProductCategoryRepository();
         }
-        // GET: ProductManager
+        // GET: ProductCategoryManager
         public ActionResult Index()
         {
-            List<Product> products = context.Collection().ToList();
+            List<ProductCategory> products = context.Collection().ToList();
             return View(products);
         }
 
         public ActionResult Create()
         {
-            ProductManagerViewModel viewmodel = new ProductManagerViewModel();
-
-            viewmodel.Product = new Product();
-            viewmodel.ProductCategories = productCategories.Collection();
-            return View(viewmodel);
+            ProductCategory product = new ProductCategory();
+            return View(product);
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(ProductCategory product)
         {
             if (!ModelState.IsValid)
             {
@@ -53,26 +47,23 @@ namespace MyShopDemo.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Product product = context.Find(Id);
+            ProductCategory product = context.Find(Id);
             if (product == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                ProductManagerViewModel viewmodel = new ProductManagerViewModel();
-                viewmodel.Product = product;
-                viewmodel.ProductCategories = productCategories.Collection();
-                return View(viewmodel);
+                return View(product);
             }
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product, string Id)
+        public ActionResult Edit(ProductCategory product, string Id)
         {
-            Product productToEdit = context.Find(Id);
+            ProductCategory productToEdit = context.Find(Id);
 
-            if(product == null)
+            if (product == null)
             {
                 return HttpNotFound();
             }
@@ -84,10 +75,6 @@ namespace MyShopDemo.WebUI.Controllers
                 }
 
                 productToEdit.category = product.category;
-                productToEdit.description = product.description;
-                productToEdit.image = product.image;
-                productToEdit.name = product.name;
-                productToEdit.price = product.price;
 
                 context.Commit();
 
@@ -97,7 +84,7 @@ namespace MyShopDemo.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Product productToDelete = context.Find(Id);
+            ProductCategory productToDelete = context.Find(Id);
 
             if (productToDelete == null)
             {
@@ -113,7 +100,7 @@ namespace MyShopDemo.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Product productToDelete = context.Find(Id);
+            ProductCategory productToDelete = context.Find(Id);
 
             if (productToDelete == null)
             {
