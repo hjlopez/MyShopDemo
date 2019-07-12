@@ -8,23 +8,19 @@ using System.Threading.Tasks;
 
 namespace MyShopDemo.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string id { get; set; }
 
         [StringLength(20)]
         [DisplayName("Product Name")] // name to be displayed
-        public string name { get; set; }
-        public string description { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         [Range(0, 1000)]
-        public decimal price { get; set; }
-        public string category { get; set; }
-        public string image { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
+        public string Image { get; set; }
 
-        public Product()
-        {
-            this.id = Guid.NewGuid().ToString();
-        }
+        
     }
 }
