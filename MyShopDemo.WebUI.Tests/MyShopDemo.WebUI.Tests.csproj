@@ -47,6 +47,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -103,8 +104,10 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\BasketControllerTests.cs" />
+    <Compile Include="Mocks\MockContext.cs" />
+    <Compile Include="Mocks\MockHttpContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -113,6 +116,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyShopDemo.Core\MyShopDemo.Core.csproj">
+      <Project>{C27D4033-7FA3-4E36-9C03-409E3804652D}</Project>
+      <Name>MyShopDemo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyShopDemo.Services\MyShopDemo.Services.csproj">
+      <Project>{3C96B0E5-460B-4947-9CFE-B716F6C60C97}</Project>
+      <Name>MyShopDemo.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyShopDemo.WebUI\MyShopDemo.WebUI.csproj">
       <Project>{fb4f0105-bb98-4bdb-b912-1a80b8fa9ec1}</Project>
       <Name>MyShopDemo.WebUI</Name>

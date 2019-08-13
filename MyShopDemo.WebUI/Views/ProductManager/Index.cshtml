@@ -35,8 +35,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @*<img class="img-thumbnail" style="height:50px" src="~/Content/ProductImages/@item.Image/" />*@
-            @*<img class="img-thumbnail" style="height:50px" src=@Url.Content("~/Content/ProductImages/23f620c1-fb9d-44e2-bd25-068afd90f653.jpg")/>*@
             <img class="img-thumbnail" style="height:50px" src=@Url.Content("~/Content/ProductImages/" + item.Image) />
         </td>
         <td>
